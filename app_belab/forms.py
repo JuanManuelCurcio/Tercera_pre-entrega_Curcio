@@ -4,8 +4,8 @@ from django import forms
 class NuevoUsuarioFormulario(forms.Form):
     nombre = forms.CharField(max_length=51)
     apellido = forms.CharField(max_length=51)
-    edad = forms.IntegerField(required=True)  
-    usuario_id = forms.CharField(max_length=18)  
+    edad = forms.IntegerField()  
+    NickName = forms.CharField(max_length=18)  
     password = forms.CharField(max_length=18)  
     email = forms.EmailField(max_length=200)
     profesion_trabajo = forms.CharField(max_length=51)  

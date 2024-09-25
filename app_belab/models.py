@@ -7,9 +7,9 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=51, null=False)
     apellido = models.CharField(max_length=51, null=False)
     edad = models.IntegerField(null=False)  
-    usuario_id = models.CharField(max_length=18, null=False, required=True)  # PK
+    NickName = models.CharField(max_length=18, null=False)
     password = models.CharField(max_length=128, null=False) 
-    email = models.EmailField(max_length=200, null=False, required=True) 
+    email = models.EmailField(max_length=200, null=False) 
     profesion_trabajo = models.CharField(max_length=51, null=True)
 
     def __str__(self):
@@ -17,10 +17,16 @@ class Usuario(models.Model):
 
 
 class Proyectos(models.Model):
-    proyecto_id = models.CharField(max_length=18, null=False, required=True)  # PK
-    breve_descripcion = models.CharField(max_length=1250, null=False)
-    test = models.CharField(max_length=1250, null=True) # no se si iria la idea es que vaya a al test para contestar
+    proyecto_id = models.CharField(max_length=18, null=False)
+    breve_descripcion = models.CharField(max_length=1250, null=False) 
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)  # FK con Usuario
 
     def __str__(self):
         return self.breve_descripcion
+
+class Consulta(models.Model):
+    usuario_id = models.CharField(max_length=18, null=False)
+    consulta = models.CharField(max_length=2000, null=False)
+
+    def __str__(self):
+        return self.consulta
