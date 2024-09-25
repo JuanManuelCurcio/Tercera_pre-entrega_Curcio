@@ -13,10 +13,11 @@ class NuevoUsuarioFormulario(forms.Form):
 class NuevoProyectoFormulario(forms.Form):
     NickName= forms.CharField()
     nombre_proyecto = forms.CharField()
-    breve_descripcion = forms.CharField()
+    breve_descripcion = forms.CharField(widget=forms.Textarea)
 
 class NuevaConsultaFormulario(forms.Form):
-    titulo_consulta = forms.CharField()  # PK
+    NickName= forms.CharField()
+    titulo_consulta = forms.CharField()
     consulta = forms.CharField() 
 
 class BuscaProyectoFormulario(forms.Form):

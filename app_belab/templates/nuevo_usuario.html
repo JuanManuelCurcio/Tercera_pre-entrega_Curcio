@@ -1,13 +1,34 @@
 {% extends 'main.html' %}
 
 {% block gap %}
-
+<br>
+<br>
+<h5> Registrate y accede a las herramientas de BeLab. Ademas podes recibir feedback de otros investigadores, nuevas publicaciones y muchas cosas mas </h5>
+<br>
+<br>
 <form action="{% url 'NuevoUsuario' %}" method="post"> {% csrf_token %} <!-- Token de seguridad que pide djaneiro -->
             <!-- ACA VA LA FUNCION -->
     {{form_nuevo_usuario.as_p}}
     <button type="submit">Enviar</button>
 
 </form>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock gap %}
+

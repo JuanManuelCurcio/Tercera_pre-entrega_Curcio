@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import NuevoUsuarioFormulario
-from .models import Usuario
+from .forms import NuevoUsuarioFormulario, NuevoProyectoFormulario
+from .models import Usuario, Proyectos, Consulta
 
 def main(req):
     return render(req, "main.html", {})
@@ -8,20 +8,6 @@ def main(req):
 def inicio(req):
     return render(req, "inicio.html", {})
 
-# def NuevoUsuario(req):
-#     print(f'Los datos ingresados son: {req.POST}')
-#     if req.method == 'POST':
-#         form_nuevo_usuario = NuevoUsuarioFormulario(req.POST)
-
-#         if form_nuevo_usuario.is_valid(): # para ver si cumple con lo ingresaro en el modelo de formulario
-#             data = form_nuevo_usuario.cleaned_data   
-#             nuevo_usuario = NuevoUsuarioFormulario(nombre=data['nombre'], apellido=data['apellido'], edad=data['edad'],
-#         profesion_trabajo=data['profesion_trabajo'])
-#             nuevo_usuario.save() # y se guarda
-#             return render(req, "usuario_creado.html", {}) # para renderizar algo, pero deberia ser un nuevo html agradeciendo
-#     else:
-#         form_nuevo_usuario = NuevoUsuarioFormulario()
-#     return render(req, "nuevo_usuario.html", {"form_nuevo_usuario": form_nuevo_usuario})
 
 def NuevoUsuario(req):
     if req.method == 'POST':
@@ -42,4 +28,21 @@ def NuevoUsuario(req):
     else:
         form_nuevo_usuario = NuevoUsuarioFormulario()  
 
-    return render(req, "nuevo_usuario.html", {"form_nuevo_usuario": form_nuevo_usuario})  
+    return render(req, "nuevo_usuario.html", {"form_nuevo_usuario": form_nuevo_usuario})
+
+def NuevoProyecto(req):
+    if req.method == 'POST':
+        form_nuevo_proyecto = NuevoProyectoFormulario(req.POST)
+
+        if form_nuevo_proyecto.is_valid():  
+            nuevo_proyecto = Proyectos(
+                    NickName= form_nuevo_proyecto.cleaned_data["NickName"],
+                    nombre_proyecto = form_nuevo_proyecto.cleaned_data["nombre_proyecto"],
+                    breve_descripcion = form_nuevo_proyecto.cleaned_data["breve_descripcion"],
+            )
+            nuevo_proyecto.save()  
+            return render(req, "proyecto_creado.html", {})  
+    else:
+        form_nuevo_proyecto = NuevoProyectoFormulario()  
+
+    return render(req, "nuevo_proyecto.html", {"form_nuevo_proyecto": form_nuevo_proyecto})
