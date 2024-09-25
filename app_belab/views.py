@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import NuevoUsuarioFormulario, NuevoProyectoFormulario
+from .forms import NuevoUsuarioFormulario, NuevoProyectoFormulario, NuevaConsultaFormulario
 from .models import Usuario, Proyectos, Consulta
 
 def main(req):
@@ -7,6 +7,20 @@ def main(req):
 
 def inicio(req):
     return render(req, "inicio.html", {})
+
+def proyecto_boton(req):
+    return render(req, "proyectos.html", {})
+
+def busqueda_proyecto(req):
+    return render(req, "busqueda_proyecto.html")
+
+def resultado_proyecto(req):
+    nombre_proyecto = req.GET["nombre_proyecto"]
+    proyectos = Proyectos.objects.filter(nombre_proyecto__icontains=nombre_proyecto)
+    return render(req, "resultado_proyecto.html", {"proyectos": proyectos, "nombre_proyecto": nombre_proyecto})
+
+def belab_tools(req):
+    return render(req, "belab_tools.html")
 
 
 def NuevoUsuario(req):
@@ -46,3 +60,20 @@ def NuevoProyecto(req):
         form_nuevo_proyecto = NuevoProyectoFormulario()  
 
     return render(req, "nuevo_proyecto.html", {"form_nuevo_proyecto": form_nuevo_proyecto})
+
+def NuevaConsulta(req):
+    if req.method == 'POST':
+        form_nueva_consulta = NuevaConsultaFormulario(req.POST)
+
+        if form_nueva_consulta.is_valid():  
+            nueva_consulta = Consulta(
+                    NickName= form_nueva_consulta.cleaned_data["NickName"],
+                    titulo_consulta = form_nueva_consulta.cleaned_data["titulo_consulta"],
+                    consulta = form_nueva_consulta.cleaned_data["consulta"],
+            )
+            nueva_consulta.save()  
+            return render(req, "consulta_creada.html", {})  
+    else:
+        form_nueva_consulta = NuevaConsultaFormulario()  
+
+    return render(req, "nueva_consulta.html", {"form_nueva_consulta": form_nueva_consulta})

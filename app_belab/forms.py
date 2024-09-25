@@ -18,9 +18,9 @@ class NuevoProyectoFormulario(forms.Form):
 class NuevaConsultaFormulario(forms.Form):
     NickName= forms.CharField()
     titulo_consulta = forms.CharField()
-    consulta = forms.CharField() 
+    consulta = forms.CharField(widget=forms.Textarea) 
 
 class BuscaProyectoFormulario(forms.Form):
-    autor_proyecto = forms.CharField(max_length=51)  # Podrías agregar opciones para seleccionar
+    NickName = forms.CharField(max_length=51)  # Podrías agregar opciones para seleccionar
     nombre_proyecto = forms.CharField(max_length=51)
 

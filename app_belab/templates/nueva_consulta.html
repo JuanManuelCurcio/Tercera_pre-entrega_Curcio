@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block gap %}
+<br>
+<br>
+<h5> Consulta tus dudas </h5>
+<br>
+<br>
+<form action="{% url 'NuevaConsulta' %}" method="post"> {% csrf_token %} <!-- Token de seguridad que pide djaneiro -->
+            <!-- ACA VA LA FUNCION -->
+    {{form_nueva_consulta.as_p}}
+    <button type="submit">Enviar</button>
+
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock gap %}
