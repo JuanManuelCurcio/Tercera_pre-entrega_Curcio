@@ -8,6 +8,7 @@ Para la entrega final, tengo pensado implementar al menos una funcionalidad rela
 Pido disculpas por la implementación rudimentaria del HTML; sin embargo, las funcionalidades solicitadas en la tarea funcionan según las pruebas realizadas.
 
 ## URL local de inicio: http://localhost:8000/app_belab/inicio/
+(o si se abre el codigo del proyecto directamente desde el local host tambien abre)
 
 ## Explicación de la plataforma:
 

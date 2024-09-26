@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from app_belab.views import inicio
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("app_belab/", include("app_belab.urls")),
+    path("", inicio, name="inicio") # main si mandas el localhost
 ]
